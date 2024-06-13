@@ -1,0 +1,23 @@
+---
+const destinos = await (
+  await fetch("https://api-colombia.com/api/v1/Region/1/departments")
+).json();
+import Card from '../components/Card.astro'
+---
+<section id="destinos">
+  <div class="p-10">
+    <h2 class="text-5xl text-center">Destinos</h2>
+  </div>
+  <div class="card-container">
+    {destinos.departments.map(({name, description}) => <Card title={name} description={description} />)}
+  </div>
+</section>
+
+<style>
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 30px;
+  }
+</style>
