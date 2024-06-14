@@ -1,4 +1,4 @@
-export async function get({ params }) {
+export async function GET({ params, request }) {
     const data = {
         "Atlántico": {
             "Barranquilla": [
@@ -62,21 +62,7 @@ export async function get({ params }) {
         }
     };
 
-    const { departamento, ciudad } = params;
-    if (data[departamento] && data[departamento][ciudad]) {
-        return {
-            body: JSON.stringify(data[departamento][ciudad]),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-    } else {
-        return {
-            status: 404,
-            body: JSON.stringify({ error: 'Información no encontrada' }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-    }
+    return new Response(
+      JSON.stringify(data)
+    )
 }
