@@ -1,24 +1,61 @@
 ---
+import Card from '../components/Card.svelte'
 const destinos = await (
   await fetch("https://api-colombia.com/api/v1/Region/1/departments")
 ).json();
-import Card from '../components/Card.svelte'
 ---
 <section id="destinos">
   <div class="p-10">
     <h2 class="text-5xl text-center">Destinos</h2>
   </div>
   <div class="card-container">
-    {destinos.departments.map(({name, description}) => <Card {name} {description} client:load/>)}
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        {destinos.departments.map(({name, description}) => (
+          <div class="swiper-slide">
+            <Card {name} {description} client:load/>
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 </section>
 
+<script>
+  import Swiper from 'swiper/bundle';
+  import 'swiper/css/bundle';
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    breakpoints: {
+      480: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      640: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      },
+      800: {
+        slidesPerView: 4,
+        spaceBetween: 40
+      }
+    },
+    autoplay: {
+      delay: 5000
+    },
+    centeredSlides: true,
+    grabCursor: true
+  });
+</script>
+
 <style>
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
-    place-items: center;
-    padding: 30px;
+  .swiper {
+    width: 100%;
+    padding: 20px;
   }
 </style>

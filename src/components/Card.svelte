@@ -1,18 +1,18 @@
 <script>
     import { onMount } from 'svelte'
 
-    export let name, description
+    export let name, description, type
 
     let imageUrl
 
     onMount(async () => {
-        const response = await (await fetch("/destinations-images.json")).json()
-        imageUrl = response[name]
+        const destinationsImages = await (await fetch("/destinations-images.json")).json()
+        imageUrl = destinationsImages[name]
     })
 </script>
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="rounded-t-lg" src={imageUrl} alt="" />
+        <img class="rounded-t-lg min-h-auto max-w-full" src={imageUrl} alt="" />
     </a>
     <div class="p-5">
         <a href="#">
