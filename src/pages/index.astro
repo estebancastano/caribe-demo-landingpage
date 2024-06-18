@@ -7,7 +7,7 @@ import Footer from "../components/Footer.astro";
 import ContactForm from "../components/Contact-form.astro";
 ---
 <Layout title="Turismo en el Atlántico">
-	<main>
+	<main class="container">
 		<Hero />
 		<Destinos />
 		<IntermediateSection />
@@ -15,3 +15,10 @@ import ContactForm from "../components/Contact-form.astro";
 		<Footer />
 	</main>
 </Layout>
+
+<style>
+	.container {
+		max-width: 1240px;
+		margin: 0 auto;
+	}
+</style>

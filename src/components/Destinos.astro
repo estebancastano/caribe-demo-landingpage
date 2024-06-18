@@ -39,10 +39,6 @@ const destinos = await (
       640: {
         slidesPerView: 3,
         spaceBetween: 30
-      },
-      800: {
-        slidesPerView: 4,
-        spaceBetween: 40
       }
     },
     autoplay: {
@@ -57,5 +53,25 @@ const destinos = await (
   .swiper {
     width: 100%;
     padding: 20px;
+  }
+
+  .swiper::before,
+  .swiper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+  }
+  .swiper::before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+  }
+
+  .swiper::after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+    
   }
 </style>
