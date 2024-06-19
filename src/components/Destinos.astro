@@ -1,0 +1,77 @@
+---
+import Card from '../components/Card.svelte'
+const destinos = await (
+  await fetch("https://api-colombia.com/api/v1/Region/1/departments")
+).json();
+---
+<section id="destinos" class="max-w-[1240px] mx-auto">
+  <div class="p-10">
+    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900">Destinos</h2>
+  </div>
+  <div class="card-container">
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        {destinos.departments.map(({name, description}) => (
+          <div class="swiper-slide">
+            <Card {name} {description} client:load/>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper/bundle';
+  import 'swiper/css/bundle';
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    breakpoints: {
+      480: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      640: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      }
+    },
+    autoplay: {
+      delay: 5000
+    },
+    centeredSlides: true,
+    grabCursor: true
+  });
+</script>
+
+<style>
+  .swiper {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .swiper::before,
+  .swiper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+  }
+  .swiper::before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+  }
+
+  .swiper::after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+    
+  }
+</style>

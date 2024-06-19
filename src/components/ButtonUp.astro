@@ -1,0 +1,48 @@
+<div class="button-up transition-transform transform hover:scale-105" id="myBtn">
+    <a href="#hero"><img src="../../public/flecha-arriba.png" alt="" /></a>
+</div>
+<style>
+    .button-up {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        z-index: 99;
+    }
+    .button-up a {
+        width: 70px;
+        height: 70px;
+        background-color: #0f928c;
+        display: inline-flex;
+        border-radius: 50%;
+        margin-right: 6px;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        border: 1px solid #006465;
+        color: white;
+    }
+</style>
+
+<script>
+    const mybutton = document.getElementById("myBtn");
+
+    const scrollFunction = () => {
+        
+        if (
+            document.body.scrollTop > 50 ||
+            document.documentElement.scrollTop > 50
+        ) {
+            mybutton.classList.remove("hidden");
+        } else {
+            mybutton.classList.add("hidden");
+        }
+    };
+    const backToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    // When the user clicks on the button, scroll to the top of the document
+    mybutton.addEventListener("click", backToTop);
+
+    window.addEventListener("scroll", scrollFunction);
+</script>
