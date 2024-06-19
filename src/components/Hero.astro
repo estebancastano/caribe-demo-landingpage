@@ -7,20 +7,20 @@ const departamentosDelCaribe = await (
   await fetch("https://api-colombia.com/api/v1/Region/1/departments")
 ).json();
 ---
-<section class="min-h-screen bg-gray-50 flex items-center">
+<section class="min-h-screen bg-gray-50 flex items-center mt-[4rem]" id="hero">
   <section class="hero py-10 relative w-full">
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div
-      class="container mx-auto text-left text-white p-10 relative z-10"
+      class="container mx-auto text-left text-white p-10 relative z-10 max-w-[1240px]"
     >
       <div class="flex flex-col lg:flex-row items-center">
         <div
           class="lg:w-1/2 mb-6 lg:mb-0 text-center lg:text-left"
         >
-          <h1 class="text-6xl font-bold mb-6">
+          <h1 class="text-4xl font-bold mb-6 md:text-6xl">
             ¡Ven a visitar Colombia!
           </h1>
-          <p class="text-xl mb-6">
+          <p class="text-lg mb-6 md:text-xl">
             {
               regionCaribe.description ||
                 "Descripción no disponible"
